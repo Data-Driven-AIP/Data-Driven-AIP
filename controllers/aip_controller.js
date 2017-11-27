@@ -4,7 +4,7 @@ var router = express.Router();
 
 
 router.get("/", function(req, res) {
-    res.render("index");
+    res.render("partials/user/user_account");
 });
 
 // Export routes for server.js to use.
