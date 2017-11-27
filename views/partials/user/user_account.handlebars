@@ -3,7 +3,7 @@
 <!-- Nav Bar -->
 <nav class="top-bar">
 	  <div class="top-bar-left">
-	    <h3>Site Title</h3>
+	    <h3>Logo</h3>
 	  </div>
 	  <div class="top-bar-right">
 	    <ul class="dropdown menu" data-dropdown-menu>
@@ -32,15 +32,45 @@
 </section>
 
 <!-- This section needs to be dynamicly changing the height based on screen size -->
-<section class="grid-container mainContent">
+<section class="grid-container">
 
-	<div class="grid-x grid-padding-x">
+	<div class="grid-x grid-padding-x mainContent">
+
+		<!-- Side Bar -->
 		<aside class="medium-2 cell" id="recipeSection">
 			<div class="grid-y">
-				<button>Create New</button>
+				<a role="button" aria-label="create new note" id="newNote" href="#" class="button">Create Note</a>
 			</div>
+
+			<div id="recentNotes">
+				<h5> Recent Notes </h5>
+				<hr>
+				<ul>
+					<li><a>Lemon Recipe</a></li>
+					<li><a>Homework 3</a></li>
+					<li><a>Turkey Recipe</a></li>
+					<li><a>Glazed Ham</a></li>
+					<li><a>Sugar Cookie</a></li>
+					<li><a>Sweet Potato Pie</a></li>
+					<li><a>Pecan Pie</a></li>
+					<li><a>Vegan Recipe</a></li>
+					<li><a>Vegitarian Recipe</a></li>
+					<li><a>Run 3 Miles</a></li>
+				</ul>
+			</div>
+
+			<div id="trending">
+				<h5>Trending Recipes</h5>
+				<hr>
+				<ul>
+					<li><a>Roasted Tofu</a></li>
+				</ul>
+			</div>
+
 		</aside>
 
+
+		<!-- Main Section -->
 		<div class="medium-10 cell shadow" id="noteBox">
 
 	      <!-- CARD -->
@@ -51,11 +81,10 @@
 
 	      <div class="card" id="divResize">
 	        <div class="card-divider">
-	          <h5>Lemon Recipe</h5>
+	          <h5>Draggable</h5>
 	        </div>
 	        <img src="http://foundation.zurb.com/sites/docs/assets/img/generic/rectangle-1.jpg">
 	        <div class="card-section">
-	          <h6>For 11/29</h6>
 	          <p>User can also resize</p>
 	        </div>
 	      </div>
