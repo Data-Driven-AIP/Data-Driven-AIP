@@ -1,0 +1,72 @@
+/* *******************************************************************
+General
+******************************************************************** */
+.wrapper {
+	width: 90%;
+	margin: 0 auto;
+}
+
+
+/* *******************************************************************
+Nav
+******************************************************************** */
+.top-bar {
+	padding: 0 5%;
+	margin-bottom: 15px;
+}
+
+.input-group-rounded {
+	margin-bottom: 15px;
+}
+
+.input-group-rounded .input-group-field {
+  border-radius: 5000px 0 0 5000px;
+  padding-left: 1rem;
+
+}
+
+.input-group-rounded .input-group-button .button {
+  border-radius: 0 5000px 5000px 0;
+  font-size: 0.8rem;
+}
+
+/* *******************************************************************
+Main Section
+******************************************************************** */
+.mainContent {
+	height: 500px;
+}
+
+#recipeSection{
+	
+}
+
+#noteBox{
+	background-color: #F3EBDD;
+}
+.card {
+	style="width: 150px;"
+}
+
+.shadow {
+   -moz-box-shadow:    inset 0 0 10px #000000;
+   -webkit-box-shadow: inset 0 0 10px #000000;
+   box-shadow:         inset 0 0 10px #000000;
+}
+
+/* *******************************************************************
+Footer
+******************************************************************** */
+.footer { 
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #242922;
+}
+.footer p{
+	color: #F3EBDD;
+    text-align: center;
+    bottom: 100px;
+}
+
