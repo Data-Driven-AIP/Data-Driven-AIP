@@ -1,3 +1,5 @@
+// This is the custom JS file
+
 // runs foundation
 $(document).foundation()
 

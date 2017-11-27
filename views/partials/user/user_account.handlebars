@@ -1,5 +1,6 @@
-<!-- Nav Bar -->
+<!-- This is for the user account page. This is unique to each user -->
 
+<!-- Nav Bar -->
 <nav class="top-bar">
 	  <div class="top-bar-left">
 	    <h3>Site Title</h3>
@@ -30,8 +31,10 @@
 		</div>
 </section>
 
-<section class="grid-container">
-	<div class="grid-x grid-padding-x mainContent">
+<!-- This section needs to be dynamicly changing the height based on screen size -->
+<section class="grid-container mainContent">
+
+	<div class="grid-x grid-padding-x">
 		<aside class="medium-2 cell" id="recipeSection">
 			<div class="grid-y">
 				<button>Create New</button>
@@ -40,8 +43,12 @@
 
 		<div class="medium-10 cell shadow" id="noteBox">
 
-
 	      <!-- CARD -->
+	      <!-- Card data will be pulled from User Note/Recipe Database -->
+	      <!-- Need to let users make new notes/delete/edit -->
+	      <!-- Card needs to open (Modal?)-->
+	      <!-- Pagination is needed or scrolling the area -->
+
 	      <div class="card" id="divResize">
 	        <div class="card-divider">
 	          <h5>Lemon Recipe</h5>
@@ -52,7 +59,6 @@
 	          <p>User can also resize</p>
 	        </div>
 	      </div>
-
 
 		</div>
 	</div>
