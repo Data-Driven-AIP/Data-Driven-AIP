@@ -47,15 +47,45 @@
 		<!-- Side Bar -->
 		<aside class="medium-2 cell" id="recipeSection">
 			<div class="grid-y">
-				<p><button class="button" data-open="exampleModal1">Click me for a modal</button></p>
+				<p><button class="button" data-open="newNoteRecipie">Click me for a modal</button></p>
 			</div>
 
-			<!-- Modal to create a new note -->
-			<div class="reveal" id="exampleModal1" data-reveal>
+			<!-- Modal to create a new note/recipe -->
+			<div class="reveal" id="newNoteRecipie" data-reveal>
 			  <h3>Would you like to create a new note or find  new recipies?</h3>
+			  <button class="hollow button success" href="#">Recipie</button>
+			  <button class="hollow button warning" data-open="createNote" href="#">Note</button>
 			  <button class="close-button" data-close aria-label="Close modal" type="button">
 			    <span aria-hidden="true">&times;</span>
 			  </button>
+			</div>
+
+			<div class="reveal" id="createNote" data-reveal>
+				<h2>Creating your new note.</h2>
+				<form>
+					<div class="grid-container">
+				    	<div class="grid-x grid-padding-x">
+				      		<div class="medium-6 cell">
+				        		<label>Title:
+				          			<input type="text" id="title" placeholder="Title">
+				        		</label>
+				      		</div>
+				      		<div class="medium-12 cell">
+				        		<label>Summary:
+				          			<input type="text" id="summary" placeholder="Summary">
+				        		</label>
+				      		</div>
+				      		<div class="medium-12 cell">
+				        		<label>
+								  	Notes:
+								  	<textarea  id="content" placeholder="Notes"></textarea>
+								</label>
+				      		</div>
+				    	</div>
+				    	<button class="hollow button"  id="newNote" href="#" data-close >Submit</button>
+				  	</div>	
+				</form>
+			 
 			</div>
 
 			<div id="recentNotes">
@@ -83,21 +113,34 @@
 		<!-- Main Section -->
 		<div class="medium-10 cell shadow" id="noteBox">
 
+
 	      <!-- CARD -->
 	      <!-- Card data will be pulled from User Note/Recipe Database -->
 	      <!-- Need to let users make new notes/delete/edit -->
 	      <!-- Card needs to open (Modal?)-->
 	      <!-- Pagination is needed or scrolling the area -->
 
-	      <div class="card" id="divResize">
+
+
+	      <div class="card divResize">
 	        <div class="card-divider">
 	          <h5>Draggable</h5>
 	        </div>
-	        <img src="http://foundation.zurb.com/sites/docs/assets/img/generic/rectangle-1.jpg">
 	        <div class="card-section">
 	          <p>User can also resize</p>
 	        </div>
 	      </div>
+
+
+
+
+
+
+
+
+
+
+
 
 		</div>
 	</div>
@@ -120,10 +163,5 @@
 <!-- Linking to our custom js -->
 
 <script src="/assets/js/app.js"></script>
-<script type="text/javascript">
-	$(document).ready(function() {
-	// makes cards moveable
-    	$(function() { $("#divResize").draggable({containment: "parent"}).resizable(); });  
-});
-</script>
+
 
