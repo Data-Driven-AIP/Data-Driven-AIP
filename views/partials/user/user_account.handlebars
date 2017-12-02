@@ -1,5 +1,13 @@
 <!-- This is for the user account page. This is unique to each user -->
 
+<!-- Link to jQueryUI css -->
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- Linking to foundation.css -->
+<link rel="stylesheet" href="/assets/css/foundation.min.css">
+<!-- Linking to our custom css -->
+<link rel="stylesheet" href="/assets/css/app.css">
+<!-- Latest compiled and minified CSS -->
+
 <!-- Nav Bar -->
 <nav class="top-bar">
 	  <div class="top-bar-left">
@@ -39,7 +47,15 @@
 		<!-- Side Bar -->
 		<aside class="medium-2 cell" id="recipeSection">
 			<div class="grid-y">
-				<a role="button" aria-label="create new note" id="newNote" href="#" class="button">Create Note</a>
+				<p><button class="button" data-open="exampleModal1">Click me for a modal</button></p>
+			</div>
+
+			<!-- Modal to create a new note -->
+			<div class="reveal" id="exampleModal1" data-reveal>
+			  <h3>Would you like to create a new note or find  new recipies?</h3>
+			  <button class="close-button" data-close aria-label="Close modal" type="button">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
 			</div>
 
 			<div id="recentNotes">
@@ -51,11 +67,6 @@
 					<li><a>Turkey Recipe</a></li>
 					<li><a>Glazed Ham</a></li>
 					<li><a>Sugar Cookie</a></li>
-					<li><a>Sweet Potato Pie</a></li>
-					<li><a>Pecan Pie</a></li>
-					<li><a>Vegan Recipe</a></li>
-					<li><a>Vegitarian Recipe</a></li>
-					<li><a>Run 3 Miles</a></li>
 				</ul>
 			</div>
 
@@ -68,7 +79,6 @@
 			</div>
 
 		</aside>
-
 
 		<!-- Main Section -->
 		<div class="medium-10 cell shadow" id="noteBox">
@@ -93,12 +103,27 @@
 	</div>
 </section>
 
-
-
-
 <!-- Footer -->
 <footer class="footer">
 	<section class="wrapper">
 		<p> &#169; Data Driven AIP Group 2017 </p>
 	</section>
 </footer>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!-- Linking to foundation js files -->
+<script src="/assets/js/vendor/what-input.js"></script>
+<script src="/assets/js/vendor/foundation.min.js"></script>
+<!-- Linking to our custom js -->
+
+<script src="/assets/js/app.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+	// makes cards moveable
+    	$(function() { $("#divResize").draggable({containment: "parent"}).resizable(); });  
+});
+</script>
+

@@ -4,6 +4,11 @@ var router = express.Router();
 
 
 router.get("/", function(req, res) {
+    res.render("index");
+});
+
+
+router.get("/user_account", function(req, res) {
     res.render("partials/user/user_account");
 });
 
