@@ -25,7 +25,7 @@
 	      
 	      <li><a href="#">AIP</a></li>
 
-	      <li><a href="#">Home</a></li>
+	      <li><a href="/">Home</a></li>
 	    </ul>
 	  </div>
 </nav>
@@ -47,7 +47,7 @@
 		<!-- Side Bar -->
 		<aside class="medium-2 cell" id="recipeSection">
 			<div class="grid-y">
-				<p><button class="button" data-open="newNoteRecipie">Click me for a modal</button></p>
+				<h5 class="clear button warning large" data-open="newNoteRecipie">Create New</h5>
 			</div>
 
 			<!-- Modal to create a new note/recipe -->
@@ -60,16 +60,36 @@
 			  </button>
 			</div>
 
+			<!-- form to create new cards -->
 			<div class="reveal" id="createNote" data-reveal>
 				<h2>Creating your new note.</h2>
 				<form>
 					<div class="grid-container">
 				    	<div class="grid-x grid-padding-x">
-				      		<div class="medium-6 cell">
+				      		<div class="medium-9 cell">
 				        		<label>Title:
 				          			<input type="text" id="title" placeholder="Title">
 				        		</label>
 				      		</div>
+				      		<div class="medium-4 cell">
+				        		<label>Label:
+				          			<input type="text" id="label" placeholder="4 Characters only">
+				        		</label>
+				      		</div>
+
+							<div class="medium-4 cell">
+								<label>Label Color:
+								    <select name="" class="form-control" id="labelColor" input>
+							          <option value="">Select a color</option>
+							          <option value="primary" input>Blue </option>
+							          <option value="secondary" input >Gray</option>
+							          <option value="success" input>Green</option>
+							          <option value="alert" input>Red</option>
+							          <option value="warning" input>Orange</option>
+							        </select>
+						        </label>
+							</div>
+
 				      		<div class="medium-12 cell">
 				        		<label>Summary:
 				          			<input type="text" id="summary" placeholder="Summary">
@@ -121,30 +141,35 @@
 	      <!-- Pagination is needed or scrolling the area -->
 
 
-
-	      <div class="card divResize">
-	        <div class="card-divider">
-	          <h5>Draggable</h5>
-	        </div>
-	        <div class="card-section">
-	          <p>User can also resize</p>
-	        </div>
-	      </div>
-
-
-
-
-
-
-
-
-
-
-
-
 		</div>
 	</div>
 </section>
+
+<!-- Contact Us -->
+<div class="contact-panel" id="contact-panel" data-toggler=".is-active">
+  <a class="contact-panel-button" data-toggle="contact-panel">Contact us</a>
+  <form action="">
+    <div class="row">
+      <label>Full name *
+        <input type="text" placeholder="Full name">
+      </label>
+    </div>
+    <div class="row">
+      <label>Email *
+        <input type="email" placeholder="Email address">
+      </label>
+    </div>
+    <div class="row">
+      <label>Message *
+        <textarea placeholder="Describe your needs" rows="3"></textarea>
+      </label>
+    </div>
+    <div class="contact-panel-actions">
+      <button class="cancel-button" data-toggle="contact-panel">Nevermind</button>
+      <input type="submit" class="button submit-button" value="Submit">
+    </div>
+  </form>
+</div>
 
 <!-- Footer -->
 <footer class="footer">
