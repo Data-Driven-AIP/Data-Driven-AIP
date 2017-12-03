@@ -4,6 +4,17 @@ $(document).foundation()
 
 $(document).ready(function() {
 
+	$(function() {
+		$('.search')
+	    	.bind('click', function(event) {
+	      		$(".search-field").toggleClass("expand-search");
+			// if the search field is expanded, focus on it
+	    		if ($(".search-field").hasClass("expand-search")) {
+	        		$(".search-field").focus();
+	      		}
+	    })
+	});
+
     //creating new notes
     $("#newNote").on("click", function(event){
     	event.preventDefault();
@@ -16,8 +27,11 @@ $(document).ready(function() {
     		content: $("#content").val().trim()
     	};
 
+    	var uniqueID = note.title + note.label
+
     	var card = $('<div/>', {
-    		'class': "note divResize card-info " + note.labelColor    		
+    		'class': "note divResize card-info " + note.labelColor,
+    		"id": uniqueID    		
     	});
 
 
@@ -54,7 +68,11 @@ $(document).ready(function() {
     	var remove = $('<button>', {
     		'class': "hollow button alert small notebutton",
     		'id': "deleteNote",
-    		text: "Delete"
+    		text: "Delete",
+    		click: function(){
+    			console.log(uniqueID)
+    			$("#"+ uniqueID).remove();
+    		} 
     	}).appendTo($(cardFooter));
 
     	$(cardFooter).appendTo($(card));
@@ -76,14 +94,6 @@ $(document).ready(function() {
     // makes old cards moveable
     $(function() { $(".divResize").draggable({containment: "parent"}).resizable(); }); 
 
-    // closes the panel on click outside
-	$(document).mouseup(function (e) {
-	  var container = $('#contact-panel');
-	  if (!container.is(e.target) // if the target of the click isn't the container...
-	  && container.has(e.target).length === 0) // ... nor a descendant of the container
-	    {
-	      container.removeClass('is-active');
-	    }
-	});
+  
 
 });
