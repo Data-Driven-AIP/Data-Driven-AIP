@@ -18,11 +18,14 @@
   },
   "homepage": "https://github.com/Data-Driven-AIP/Data-Driven-AIP#readme",
   "dependencies": {
+    "axios": "^0.17.1",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
     "method-override": "^2.3.10",
     "mysql": "^2.15.0",
-    "nodemon": "^1.12.1"
+    "mysql2": "^1.5.1",
+    "nodemon": "^1.12.1",
+    "sequelize": "^4.25.1"
   }
 }
