@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "M0shiM0shi",
+    "password": null,
     "database": "aip_nutrition",
     "host": "127.0.0.1",
     "dialect": "mysql"
