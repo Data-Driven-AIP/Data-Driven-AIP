@@ -1,0 +1,66 @@
+<!-- Home Page-->
+
+
+<!-- Linking to foundation.css -->
+<link rel="stylesheet" href="../assets/css/foundation.min.css">
+<!-- Latest compiled and minified CSS -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:300|Roboto" rel="stylesheet">
+<!-- Linking to our custom css -->
+<link rel="stylesheet" href="../assets/css/home.css">
+<style type="text/css">
+  body{
+    background-image: url("../assets/image/carrots.jpeg");
+    background-size: cover;
+  }
+</style>
+
+
+  <nav class="top-bar">
+      <div class="top-bar-left">
+        <h3>Logo</h3>
+      </div>
+      <div class="top-bar-right">
+        <ul class="dropdown menu" data-dropdown-menu>
+        <!-- Drop down menu -->
+          <li><a href="#">UserName</a>
+              <ul class="menu vertical align-center">
+                <li><a href="/user_account">Profile</a></li>
+                <li><a href="#">Logout</a></li>
+              </ul>
+          </li>
+          
+          <li><a href="#">AIP</a></li>
+
+          <li><a href="/home">Home</a></li>
+        </ul>
+      </div>
+  </nav>
+
+
+  <div class="grid-x">
+    <div class="small-3 cells"></div>
+    <div class="small-6 cells">
+      <h1> Data Driven <br>
+        Autoimmune Paleo
+      </h1>
+    <button class="hollow button success large hvr-float-shadow" id="homeButton" ><a href="/user_account">Log In</a></button>
+    </div>
+  </div>
+<!-- Footer -->
+<footer class="footer">
+  <section class="wrapper">
+    <p> &#169; Data Driven AIP Group 2017 </p>
+  </section>
+</footer>
+
+
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<!-- Linking to foundation js files -->
+<script src="../assets/js/vendor/what-input.js"></script>
+<script src="../assets/js/vendor/foundation.min.js"></script>
+<script type="text/javascript">
+  $(document).foundation();
+</script>

@@ -31,6 +31,10 @@ var edamam = require("./edamam.js")
     res.render("index");
   });
 
+  router.get("/what_is", function(req, res) {
+    res.render("partials/home/whatis");
+  });
+
 
   router.get("/user_account", function(req, res) {
     res.render("partials/user/user_account");
