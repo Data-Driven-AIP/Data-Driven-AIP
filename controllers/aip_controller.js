@@ -26,6 +26,14 @@ var db = ("../models");
     });
   });
 
+  router.get("/home", function(req, res) {
+    res.render("index");
+  });
+
+
+  router.get("/user_account", function(req, res) {
+    res.render("partials/user/user_account");
+  });
 
 // Export routes for server.js to use.
 module.exports = router;
