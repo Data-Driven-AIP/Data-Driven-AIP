@@ -1,7 +1,15 @@
 module.exports = {
+    getFood,
+    foodParser,
+    foodResults,
+    insertFood,
+    getResult
+}
 
-    const axios = require("axios");
-    var mysql = require('mysql');
+const axios = require("axios");
+var mysql = require('mysql');
+var db = require("../models");
+
 
     /*Get request to edamam to get list of food items matching search queries*/
     //const url = 'https://api.edamam.com/api/food-database/parser?ingr=coconut%20yogurt&app_id=70222cca&app_key=611d05090fd131a9426b4014c000b338'
@@ -20,26 +28,6 @@ module.exports = {
     /*Post request to EDAMAM to get information from food item.*/
     /*const url = "https://api.edamam.com/api/food-database/nutrients?app_id=70222cca&app_key=611d05090fd131a9426b4014c000b338";
     build this URL and store the API and App keys*/
-    function foodResults(url) {
-      axios
-        .post("https://api.edamam.com/api/food-database/nutrients?app_id=70222cca&app_key=611d05090fd131a9426b4014c000b338", {
-          "yield": 1,
-          "ingredients": [
-            {
-              "quantity": 100, //keep constant
-              "measureURI": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram", //keep constant
-              "foodURI": url //foodId URL
-            }
-          ]
-        })
-        .then(response => {
-
-          return foodParser(response.data);
-        })
-        .catch(error => {
-          console.log(error);
-      });
-    }
 
     function foodParser(response) {
         //Meta data about the food item from the edamam database
@@ -64,6 +52,27 @@ module.exports = {
             values[label] = true;
         })
         return insertFood(values);
+    }
+
+    function foodResults(url) {
+      axios
+        .post('https://api.edamam.com/api/food-database/nutrients?app_id=70222cca&app_key=611d05090fd131a9426b4014c000b338', {
+          "yield": 1,
+          "ingredients": [
+            {
+              "quantity": 100, //keep constant
+              "measureURI": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram", //keep constant
+              "foodURI": url //foodId URL
+            }
+          ]
+        })
+        .then(response => {
+
+          return foodParser(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+      });
     }
 
     function insertFood(values) {
@@ -177,7 +186,6 @@ module.exports = {
         console.log(result)
     }
 
-}
 /*foodResults("http://www.edamam.com/ontologies/edamam.owl#Food_12108")
 getFood('https://api.edamam.com/api/food-database/parser?ingr=coconut%20yogurt&app_id=70222cca&app_key=611d05090fd131a9426b4014c000b338')*/
 

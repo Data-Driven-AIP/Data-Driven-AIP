@@ -6,6 +6,8 @@ var app = express();
 var sequelize = require("sequelize")
 var db = require("./models");
 var PORT = process.env.PORT || 3000;
+var routes = require("./controllers/aip_controller.js");
+var exphbs = require("express-handlebars");
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -27,7 +29,6 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var routes = require("./controllers/aip_controller.js");
 
 app.use("/", routes);
 
