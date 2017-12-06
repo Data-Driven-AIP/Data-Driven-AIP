@@ -5,20 +5,103 @@ body{
   	font-family: 'Montserrat', sans-serif;
 }
 
+p{
+  color: black;
+  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+}
+
+.wrapper {
+  width: 90%;
+  margin: 0 auto;
+}
+
+a {
+  color: #B22222;
+  font-weight: bolder;
+}
+
+a:hover {
+  color: #B22222;
+}
 /* *******************************************************************
 Nav Bar
 ******************************************************************** */
+#nav {
+   opacity: 0.3;
+   padding: 0px 5%;
+   max-height: 50px;
+   background-color: #8FBC8F;
+}
 
+#nav:hover {
+ opacity: 0.7;
+}
+
+#navButtons {
+  height: 50px;
+  background-color: #8FBC8F;
+  
+}
+
+/* Underline From Center */
+.hvr-underline-from-center {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  overflow: hidden;
+}
+.hvr-underline-from-center:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  background: #B22222;
+  height: 4px;
+  -webkit-transition-property: left, right;
+  transition-property: left, right;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-underline-from-center:hover:before, .hvr-underline-from-center:focus:before, .hvr-underline-from-center:active:before {
+  left: 0;
+  right: 0;
+}
 
 
 /* *******************************************************************
 Center Section
 ******************************************************************** */
+h1{
+  color: #B22222;
+  text-align: center;
+}
+
+h4 {
+  color: #006400;
+}
+
 #index h1 {
 	margin-top: 30%;
-	color: #B22222;
-	text-align: center;
+	
 }
+
+.thumbnail{
+  margin-top: 50px;
+}
+
+img{
+  width: 150px;
+  max-height: 150px; 
+}
+
 
 #index #homeButton {
 	font-family: 'Roboto', sans-serif;
@@ -81,6 +164,39 @@ Center Section
   /* move the element down by 5px (it will stay in place because it's attached to the element that also moves up 5px) */
 }
 
+/* Pulse Grow */
+@-webkit-keyframes hvr-pulse-grow {
+  to {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+@keyframes hvr-pulse-grow {
+  to {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+}
+#hvr-pulse-grow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  border: 2.5px solid #008000;
+}
+#hvr-pulse-grow:hover, .hvr-pulse-grow:focus, .hvr-pulse-grow:active {
+  -webkit-animation-name: hvr-pulse-grow;
+  animation-name: hvr-pulse-grow;
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
+}
 
 /* *******************************************************************
 Footer Same for all pages

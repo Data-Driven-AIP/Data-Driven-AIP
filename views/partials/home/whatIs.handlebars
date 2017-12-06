@@ -14,38 +14,72 @@
   }
 </style>
 
-
-  <nav class="top-bar">
-      <div class="top-bar-left">
-        <h3>Logo</h3>
-      </div>
-      <div class="top-bar-right">
-        <ul class="dropdown menu" data-dropdown-menu>
-        <!-- Drop down menu -->
-          <li><a href="#">UserName</a>
-              <ul class="menu vertical align-center">
-                <li><a href="/user_account">Profile</a></li>
-                <li><a href="#">Logout</a></li>
-              </ul>
-          </li>
-          
-          <li><a href="#">AIP</a></li>
-
-          <li><a href="/home">Home</a></li>
-        </ul>
-      </div>
-  </nav>
-
-
-  <div class="grid-x">
-    <div class="small-3 cells"></div>
-    <div class="small-6 cells">
-      <h1> Data Driven <br>
-        Autoimmune Paleo
-      </h1>
-    <button class="hollow button success large hvr-float-shadow" id="homeButton" ><a href="/user_account">Log In</a></button>
+<!-- Nav Bar -->
+<nav class="top-bar" id="nav">
+    <div class="top-bar-left">
+      <h3 id="navButtons">Logo</h3>
     </div>
+    <div class="top-bar-right">
+      <ul class="dropdown menu" data-dropdown-menu>
+      <!-- Drop down menu -->
+        <li class="hvr-underline-from-center" id="navButtons"><a href="#">Log In</a></li>
+        <li class="hvr-underline-from-center" id="navButtons"><a href="/home">Home</a></li>
+      </ul>
+    </div>
+</nav>
+
+
+<header class="grid-x" >
+  <div class="small-3 cells"></div>
+  <div class="small-6 cells">
+    <h1 id="header">
+      Autoimmune Paleo
+    </h1>
   </div>
+</header>
+
+<section class="grid-x" >
+  <div class="small-2 cells"></div>
+  <div class="small-7 cells">
+    <div class="media-object">
+      <div class="media-object-section">
+        <div class="thumbnail">
+          <img src= "../assets/image/autoimmune.jpg">
+        </div>
+      </div>
+      <div class="media-object-section main-section">
+        <h4>What is Autoimmue Disease?</h4>
+        <p>Autoimmune disease is a condition where the body cannot tell the difference between healthy tissue and foreign invaders and a hypersensitive reaction occurs. The body starts self-tissue attack.For months or perhaps years, this self-tissue attack can occur silently until full blown autoimmune disease develops. </p>
+      </div>
+    </div>    
+  </div>
+</section>
+
+<section class="grid-x">
+  <div class="small-2 cells"></div>
+  <div class="small-7 cells">
+    <div class="media-object">
+      <div class="media-object-section">
+        <div class="thumbnail">
+          <img src= "../assets/image/caveman.jpg">
+        </div>
+      </div>
+      <div class="media-object-section main-section">
+        <h4>How can the AIP Diet help? </h4>
+        <p>The Autoimmune Protocol (AIP) diet works to reduce inflammation in the intestines. Many elimination diets are not complete enough and often do not remove immune triggers that promote inflammation in the gut. AIP works to calm inflammation in the gut and also calm inflammation in the body. While autoimmune disease can never be cured, it can be put into remission. </p>
+      </div>
+    </div>    
+  </div>
+</section>
+
+<section class="grid-x" >
+  <div class="small-5 cells"></div>
+  <div class="small-2 cells">
+    <button class="hollow button success large" id="hvr-pulse-grow"><a href="#">Food Data</a></button>
+  </div>
+</section>
+
+
 <!-- Footer -->
 <footer class="footer">
   <section class="wrapper">
