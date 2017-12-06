@@ -6,6 +6,8 @@ var app = express();
 var sequelize = require("sequelize")
 var db = require("./models");
 var PORT = process.env.PORT || 3000;
+var routes = require("./controllers/aip_controller.js");
+var exphbs = require("express-handlebars");
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -27,7 +29,6 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-var routes = require("./controllers/aip_controller.js");
 
 app.use("/", routes);
 
@@ -52,7 +53,7 @@ require("./controllers/aip_controller.js");
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
