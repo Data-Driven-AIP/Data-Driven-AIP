@@ -1,13 +1,23 @@
 
-var express  	= require('express');
-var app 	 	= express();
+var express = require("express");
+var bodyParser = require("body-parser");
+
+var port	 	= process.env.PORT || 3000;
+
 var passport 	= require('passport');
 var session	 	= require('express-session');
-var bodyParser 	= require('body-parser');
 var env 		= require('dotenv').load();
 var exphbs 		= require('express-handlebars')
-var port	 	= process.env.PORT || 8080;
 
+var app 	 	= express();
+
+// Serve static content for the app from the "public" directory in the application directory.
+app.use(express.static("public"));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// Set Handlebars.
+var exphbs = require("express-handlebars");
 
 
 
@@ -15,6 +25,13 @@ var port	 	= process.env.PORT || 8080;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+
+// Import routes and give the server access to them.
+var routes = require("./controllers/aip_controller.js");
+
+app.use("/", routes);
 
 
 //For Passport
@@ -63,7 +80,7 @@ models.sequelize.sync().then(function(){
 
 
 
-app.listen(8080, function(err){
+app.listen(3000, function(err){
 
 	if(!err)
 		console.log("Connected");
