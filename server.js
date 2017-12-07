@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 var express = require("express");
 var bodyParser = require("body-parser");
@@ -9,14 +10,34 @@ var session	 	= require('express-session');
 var env 			= require('dotenv').load();
 var exphbs 		= require('express-handlebars')
 var app 	 		= express();
+=======
 
-// Serve static content for the app from the "public" directory in the application directory.
+var express = require('express');
+var path = require('path');
+var bodyParser = require('body-parser');
+var app = express();
+var sequelize = require("sequelize")
+var db = require("./models");
+var PORT = process.env.PORT || 3000;
+var routes = require("./controllers/aip_controller.js");
+var exphbs = require("express-handlebars");
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+>>>>>>> 0080a28e8f54b07888f04157b03fc7b54be099c2
+
+// Static directory
 app.use(express.static("public"));
 
-app.use(bodyParser.urlencoded({ extended: false }));
 
-// Set Handlebars.
-var exphbs = require("express-handlebars");
 
 
 
@@ -27,11 +48,10 @@ app.use(bodyParser.json());
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Import routes and give the server access to them.
-var routes = require("./controllers/aip_controller.js");
 
 app.use("/", routes);
 
+<<<<<<< HEAD
 
 //For Passport
 app.use(session({
@@ -85,3 +105,31 @@ app.listen(3000, function(err){
 		console.log("Connected");
 	else console.log(err)
 });
+=======
+// Sets up the Express app to handle data parsing
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+
+
+
+
+
+
+
+// Routes
+// =============================================================
+require("./controllers/aip_controller.js");
+
+
+
+// Syncing our sequelize models and then starting our Express app
+// =============================================================
+db.sequelize.sync().then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
+});
+>>>>>>> 0080a28e8f54b07888f04157b03fc7b54be099c2

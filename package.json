@@ -18,13 +18,21 @@
   },
   "homepage": "https://github.com/Data-Driven-AIP/Data-Driven-AIP#readme",
   "dependencies": {
+    "axios": "^0.17.1",
     "body-parser": "^1.18.2",
     "bcrypt-nodejs": "0.0.3",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
+    "handlebars": "^4.0.11",
     "method-override": "^2.3.10",
     "mysql": "^2.15.0",
+<<<<<<< HEAD
     "nodemon": "^1.12.1",
     "passport": "^0.4.0"
+=======
+    "mysql2": "^1.5.1",
+    "nodemon": "^1.12.1",
+    "sequelize": "^4.26.0"
+>>>>>>> 0080a28e8f54b07888f04157b03fc7b54be099c2
   }
 }

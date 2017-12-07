@@ -1,34 +1,45 @@
 <!-- This is for the user account page. This is unique to each user -->
 
+<!-- Link to jQueryUI css -->
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<!-- Linking to foundation.css -->
+<link rel="stylesheet" href="/assets/css/foundation.min.css">
+<!-- Linking to our custom css -->
+<link rel="stylesheet" href="/assets/css/app.css">
+<!-- Latest compiled and minified CSS -->
+<style type="text/css">
+  body{
+    background-image: url("../assets/image/fruit.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+  }
+</style>
+
+
 <!-- Nav Bar -->
-<nav class="top-bar">
-	  <div class="top-bar-left">
-	    <h3>Logo</h3>
-	  </div>
-	  <div class="top-bar-right">
-	    <ul class="dropdown menu" data-dropdown-menu>
-	    <!-- Drop down menu -->
-	      <li><a href="#">UserName</a>
+<nav class="top-bar" id="nav">
+    <div class="top-bar-left">
+      <h3 id="navButtons">Logo</h3>
+    </div>
+    <div class="top-bar-right">
+      <ul class="dropdown menu" data-dropdown-menu>
+      <!-- Drop down menu -->
+      <li  id="navButtons"><a href="#">UserName</a>
 	      		<ul class="menu vertical align-center">
-		          <li><a href="#">Profile</a></li>
-		          <li><a href="#">Logout</a></li>
+		          <li class="hvr-underline-from-center dropDownList"><a href="#">Profile</a></li>
+		          <li class="hvr-underline-from-center dropDownList"><a href="#">Logout</a></li>
 		        </ul>
 	      </li>
-	      
-	      <li><a href="#">AIP</a></li>
-
-	      <li><a href="#">Home</a></li>
-	    </ul>
-	  </div>
+        <li class="hvr-underline-from-center" id="navButtons"><a href="/home">Home</a></li>
+      </ul>
+    </div>
 </nav>
 
 <section class="grid-x">
-		<div class="medium-7 cell input-group input-group-rounded wrapper">
-			  <input class="input-group-field" type="search" placeholder="Search your notes">
-			  <div class="input-group-button">
-			    <input type="submit" class="button secondary" value="Search">
-			  </div>
-		</div>
+	<div class="medium-5 cell"></div>
+	<div class="medium-4 cell">
+		<input type="search" name="search" placeholder="Search.." class="animated-search-form">
+	</div>
 </section>
 
 <!-- This section needs to be dynamicly changing the height based on screen size -->
@@ -39,7 +50,65 @@
 		<!-- Side Bar -->
 		<aside class="medium-2 cell" id="recipeSection">
 			<div class="grid-y">
-				<a role="button" aria-label="create new note" id="newNote" href="#" class="button">Create Note</a>
+				<h5 class="clear button warning large" data-open="newNoteRecipie">Create New</h5>
+			</div>
+
+			<!-- Modal to create a new note/recipe -->
+			<div class="reveal" id="newNoteRecipie" data-reveal>
+			  <h3>Would you like to create a new note or find  new recipies?</h3>
+			  <button class="hollow button success" href="#">Recipie</button>
+			  <button class="hollow button warning" data-open="createNote" href="#">Note</button>
+			  <button class="close-button" data-close aria-label="Close modal" type="button">
+			    <span aria-hidden="true">&times;</span>
+			  </button>
+			</div>
+
+			<!-- form to create new cards -->
+			<div class="reveal" id="createNote" data-reveal>
+				<h2>Creating your new note.</h2>
+				<form>
+					<div class="grid-container">
+				    	<div class="grid-x grid-padding-x">
+				      		<div class="medium-9 cell">
+				        		<label>Title:
+				          			<input type="text" id="title" placeholder="Title">
+				        		</label>
+				      		</div>
+				      		<div class="medium-4 cell">
+				        		<label>Label:
+				          			<input type="text" id="label" placeholder="4 Characters only">
+				        		</label>
+				      		</div>
+
+							<div class="medium-4 cell">
+								<label>Label Color:
+								    <select name="" class="form-control" id="labelColor" input>
+							          <option value="">Select a color</option>
+							          <option value="primary" input>Blue </option>
+							          <option value="secondary" input >Gray</option>
+							          <option value="success" input>Green</option>
+							          <option value="alert" input>Red</option>
+							          <option value="warning" input>Orange</option>
+							        </select>
+						        </label>
+							</div>
+
+				      		<div class="medium-12 cell">
+				        		<label>Summary:
+				          			<input type="text" id="summary" placeholder="Summary">
+				        		</label>
+				      		</div>
+				      		<div class="medium-12 cell">
+				        		<label>
+								  	Notes:
+								  	<textarea  id="content" placeholder="Notes"></textarea>
+								</label>
+				      		</div>
+				    	</div>
+				    	<button class="hollow button"  id="newNote" href="#" data-close >Submit</button>
+				  	</div>	
+				</form>
+			 
 			</div>
 
 			<div id="recentNotes">
@@ -51,11 +120,6 @@
 					<li><a>Turkey Recipe</a></li>
 					<li><a>Glazed Ham</a></li>
 					<li><a>Sugar Cookie</a></li>
-					<li><a>Sweet Potato Pie</a></li>
-					<li><a>Pecan Pie</a></li>
-					<li><a>Vegan Recipe</a></li>
-					<li><a>Vegitarian Recipe</a></li>
-					<li><a>Run 3 Miles</a></li>
 				</ul>
 			</div>
 
@@ -69,9 +133,9 @@
 
 		</aside>
 
-
 		<!-- Main Section -->
-		<div class="medium-10 cell shadow" id="noteBox">
+		<div class="medium-10 cell" id="noteBox">
+
 
 	      <!-- CARD -->
 	      <!-- Card data will be pulled from User Note/Recipe Database -->
@@ -79,22 +143,36 @@
 	      <!-- Card needs to open (Modal?)-->
 	      <!-- Pagination is needed or scrolling the area -->
 
-	      <div class="card" id="divResize">
-	        <div class="card-divider">
-	          <h5>Draggable</h5>
-	        </div>
-	        <img src="http://foundation.zurb.com/sites/docs/assets/img/generic/rectangle-1.jpg">
-	        <div class="card-section">
-	          <p>User can also resize</p>
-	        </div>
-	      </div>
 
 		</div>
 	</div>
 </section>
 
-
-
+<!-- Contact Us -->
+<div class="contact-panel" id="contact-panel" data-toggler=".is-active">
+  <a class="contact-panel-button" data-toggle="contact-panel">Contact us</a>
+  <form action="">
+    <div class="row">
+      <label>Full name *
+        <input type="text" placeholder="Full name">
+      </label>
+    </div>
+    <div class="row">
+      <label>Email *
+        <input type="email" placeholder="Email address">
+      </label>
+    </div>
+    <div class="row">
+      <label>Message *
+        <textarea placeholder="Describe your needs" rows="3"></textarea>
+      </label>
+    </div>
+    <div class="contact-panel-actions">
+      <button class="cancel-button" data-toggle="contact-panel">Nevermind</button>
+      <input type="submit" class="button submit-button" value="Submit">
+    </div>
+  </form>
+</div>
 
 <!-- Footer -->
 <footer class="footer">
@@ -102,3 +180,16 @@
 		<p> &#169; Data Driven AIP Group 2017 </p>
 	</section>
 </footer>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<!-- Linking to foundation js files -->
+<script src="/assets/js/vendor/what-input.js"></script>
+<script src="/assets/js/vendor/foundation.min.js"></script>
+<!-- Linking to our custom js -->
+
+<script src="/assets/js/app.js"></script>
+
+
