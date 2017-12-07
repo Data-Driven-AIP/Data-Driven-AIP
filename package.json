@@ -1,5 +1,5 @@
 {
-  "name": "paleo_diet",
+  "name": "data-drive-aip",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -7,11 +7,24 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Data-Driven-AIP/Data-Driven-AIP.git"
+  },
+  "author": "AIP Group",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Data-Driven-AIP/Data-Driven-AIP/issues"
+  },
+  "homepage": "https://github.com/Data-Driven-AIP/Data-Driven-AIP#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "bcrypt-nodejs": "0.0.3",
     "express": "^4.16.2",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^2.3.10",
+    "mysql": "^2.15.0",
+    "nodemon": "^1.12.1",
     "passport": "^0.4.0"
   }
 }
