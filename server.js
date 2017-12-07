@@ -1,26 +1,19 @@
-<<<<<<< HEAD
+var PORT = process.env.PORT || 3000;
 
-var express = require("express");
-var bodyParser = require("body-parser");
 
-var port = process.env.PORT || 3000;
-
+var express 	= require('express');
+var path 			= require('path');
+var bodyParser= require('body-parser');
+var sequelize = require("sequelize")
+var db 				= require("./models");
+var routes 		= require("./controllers/aip_controller.js");
+var exphbs 		= require("express-handlebars");
 var passport	= require('passport');
 var session	 	= require('express-session');
 var env 			= require('dotenv').load();
-var exphbs 		= require('express-handlebars')
 var app 	 		= express();
-=======
 
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-var app = express();
-var sequelize = require("sequelize")
-var db = require("./models");
-var PORT = process.env.PORT || 3000;
-var routes = require("./controllers/aip_controller.js");
-var exphbs = require("express-handlebars");
+
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -32,15 +25,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
->>>>>>> 0080a28e8f54b07888f04157b03fc7b54be099c2
 
 // Static directory
 app.use(express.static("public"));
-
-
-
-
-
 //For BodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -51,7 +38,6 @@ app.set("view engine", "handlebars");
 
 app.use("/", routes);
 
-<<<<<<< HEAD
 
 //For Passport
 app.use(session({
@@ -99,24 +85,13 @@ models.sequelize.sync().then(function(){
 
 
 
-app.listen(3000, function(err){
 
-	if(!err)
-		console.log("Connected");
-	else console.log(err)
-});
-=======
+
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-
-
-
-
-
-
 
 
 // Routes
@@ -128,8 +103,10 @@ require("./controllers/aip_controller.js");
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync().then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
+  app.listen(PORT, function(err) {
+		if(!err)
+			console.log("App listening on PORT " + PORT);
+		else console.log(err);
+
   });
 });
->>>>>>> 0080a28e8f54b07888f04157b03fc7b54be099c2
