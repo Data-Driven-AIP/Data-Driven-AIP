@@ -37,7 +37,9 @@ var db = require("../models");
 
   // POST route for saving a new post
   router.get("/food", function(req, res) {
+    
     edamam.getFood('https://api.edamam.com/api/food-database/parser?ingr=coconut%20yogurt&app_id=70222cca&app_key=611d05090fd131a9426b4014c000b338')
+    res.render("partials/home/food");
   });
 
   // POST route for saving a new post
@@ -48,6 +50,10 @@ var db = require("../models");
   router.get("/home", function(req, res) {
     res.render("index");
   });
+
+  // router.get("/test", function(req, res) {
+  //   res.render("partials/home/food");
+  // });
 
   router.get("/what_is", function(req, res) {
     res.render("partials/home/whatis");

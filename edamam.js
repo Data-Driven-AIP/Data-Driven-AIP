@@ -10,8 +10,15 @@ module.exports = {
         .get(url)
         .then(function(response) {
           response.data.hints.forEach(hint => {
-            console.log(hint.food.uri)
-            console.log(hint.food.label)
+            // console.log(hint.food.uri)
+            // console.log(hint.food.label)
+
+
+            // var hintDiv = $('<div>').text(hint.food)
+            // console.log("//////////////////")
+            // console.log(hintDiv)
+            // $('#results').append(hintDiv)
+
           })
       });
     }
