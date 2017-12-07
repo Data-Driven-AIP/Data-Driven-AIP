@@ -26,13 +26,9 @@
     "handlebars": "^4.0.11",
     "method-override": "^2.3.10",
     "mysql": "^2.15.0",
-<<<<<<< HEAD
     "nodemon": "^1.12.1",
-    "passport": "^0.4.0"
-=======
+    "passport": "^0.4.0",
     "mysql2": "^1.5.1",
-    "nodemon": "^1.12.1",
     "sequelize": "^4.26.0"
->>>>>>> 0080a28e8f54b07888f04157b03fc7b54be099c2
   }
 }
