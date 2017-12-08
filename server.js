@@ -1,13 +1,19 @@
-
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-var app = express();
-var sequelize = require("sequelize")
-var db = require("./models");
 var PORT = process.env.PORT || 3000;
-var routes = require("./controllers/aip_controller.js");
-var exphbs = require("express-handlebars");
+
+
+var express 	= require('express');
+var path 			= require('path');
+var bodyParser= require('body-parser');
+var sequelize = require("sequelize")
+var db 				= require("./models");
+var routes 		= require("./controllers/aip_controller.js");
+var exphbs 		= require("express-handlebars");
+var passport	= require('passport');
+var session	 	= require('express-session');
+var env 			= require('dotenv').load();
+var app 	 		= express();
+
+
 
 // error handler
 app.use(function(err, req, res, next) {
@@ -22,8 +28,9 @@ app.use(function(err, req, res, next) {
 
 // Static directory
 app.use(express.static("public"));
-
-
+//For BodyParser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
@@ -31,17 +38,60 @@ app.set("view engine", "handlebars");
 
 app.use("/", routes);
 
+
+//For Passport
+app.use(session({
+secret: 'keyboard cat',
+resave: true,
+saveUninitialized: true}));//session secret
+app.use(passport.initialize());
+app.use(passport.session()); //persistent login session
+
+
+
+// For Handlebars
+app.set('views', './app/views')
+app.engine('hbs', exphbs({extname: '.hbs'}));
+app.set('view engine', '.hbs');
+
+
+app.get('/', function(req, res){
+
+	res.send('Welcome to our page!');
+});
+
+
+
+//Models
+var models = require("./app/models");
+
+//Routes
+var authRoute = require('./app/routes/auth.js')(app, passport);
+
+//load passport
+require('./app/config/passport/passport.js')(passport, models.user);
+
+
+
+//Sync Database
+models.sequelize.sync().then(function(){
+	console.log('Nice! It is working')
+
+}).catch(function(err){
+	console.log(err, "Not working")
+});
+
+
+
+
+
+
+
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-
-
-
-
-
-
 
 
 // Routes
@@ -53,7 +103,10 @@ require("./controllers/aip_controller.js");
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
 db.sequelize.sync().then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
+  app.listen(PORT, function(err) {
+		if(!err)
+			console.log("App listening on PORT " + PORT);
+		else console.log(err);
+
   });
 });
