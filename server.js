@@ -1,6 +1,4 @@
 var PORT = process.env.PORT || 3000;
-
-
 var express 	= require('express');
 var path 			= require('path');
 var bodyParser= require('body-parser');
@@ -12,7 +10,6 @@ var passport	= require('passport');
 var session	 	= require('express-session');
 var env 			= require('dotenv').load();
 var app 	 		= express();
-
 
 
 // error handler
@@ -28,16 +25,6 @@ app.use(function(err, req, res, next) {
 
 // Static directory
 app.use(express.static("public"));
-//For BodyParser
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-
-
-app.use("/", routes);
-
 
 //For Passport
 app.use(session({
@@ -48,23 +35,34 @@ app.use(passport.initialize());
 app.use(passport.session()); //persistent login session
 
 // For Handlebars
-app.set('views', './app/views')
-app.engine('hbs', exphbs({extname: '.hbs'}));
-app.set('view engine', '.hbs');
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+//app.engine('hbs', exphbs({extname: '.hbs'}));
+app.set("view engine", "handlebars");
+//app.set('view engine', '.hbs');
+app.set('views', './views')
 
 
-app.get('/', function(req, res){
-	res.redirect('/home');
-});
+// redirect users of main page to /home
+// app.get('/', function(req, res){
+// 	res.redirect('/home');
+// });
 
 //Models
 var models = require("./app/models");
 
 //Routes
 var authRoute = require('./app/routes/auth.js')(app, passport);
+app.use("/", routes);
 
 //load passport
 require('./app/config/passport/passport.js')(passport, models.user);
+
+// Sets up the Express app to handle data parsing
+//For BodyParser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //Sync Database
 models.sequelize.sync().then(function(){
@@ -73,16 +71,6 @@ models.sequelize.sync().then(function(){
 }).catch(function(err){
 	console.log(err, "Not working")
 });
-
-
-
-// Sets up the Express app to handle data parsing
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.text());
-app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-
-
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
