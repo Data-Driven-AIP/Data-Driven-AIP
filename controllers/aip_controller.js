@@ -241,13 +241,15 @@ let nutrients = [
   getFoodId(fullRequest)
 
 
+  });
 
-
-
+  // render home
+  router.get("/", function(req, res) {
+    res.render("index");
   });
 
   router.get("/home", function(req, res) {
-    res.redirect("/");
+    res.render("index");
   });
 
   // router.get("/test", function(req, res) {
