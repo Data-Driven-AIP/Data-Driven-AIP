@@ -71,12 +71,15 @@ let nutrients = [
 */
     // Find All Records based on nutrient of interest and
     //returns top 25 with highest values.
-  router.get("/aip_topnutrients", function(req, res) {
-    let nutrient = req.param.nutrient
+    //Takes a single Nutrient _QUANTITY field.
+  router.get("/aip-top-nutrients", function(req, res) {
+    let nutrient = "K_QUANTITY" //req.params.nutrient
+    //let nutrient_unit = //req.params.unit //this might be difficult to get, skip if takes too much time.
     attrs.push(nutrient)
     db.AIPNutrition.findAll({
+          attributes: attrs,
           where: nutrient > 0,
-          order: sequelize.nutrient('max(nutrient) DESC'),
+          //order: [nutrient], //Need to order by DESC, having trouble doing this based on documentation.
           limit: 25
     }).then(function(dbPost) {
       res.json(dbPost);
@@ -84,6 +87,9 @@ let nutrients = [
   });
 
   // Find All Records based on nutritional filters
+  // Send nutritional filters and store as array of strings
+  //in trueProps. An object will be created and assign true
+  //to each string key for use in the query WHERE clause.
   router.get("/aip_filtered", function(req, res) {
     const trueProps = ["TREE_NUT_FREE"]
     let filters = {}
