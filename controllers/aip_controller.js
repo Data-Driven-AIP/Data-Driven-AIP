@@ -247,7 +247,7 @@ let nutrients = [
   });
 
   router.get("/home", function(req, res) {
-    res.render("index");
+    res.redirect("/");
   });
 
   // router.get("/test", function(req, res) {
