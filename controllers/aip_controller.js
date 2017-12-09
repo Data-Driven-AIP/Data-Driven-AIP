@@ -12,7 +12,7 @@ let attrs = [
 const axios = require("axios");
 
 
-var htmlHeader = '<!-- This is for the user account page. This is unique to each user --><!-- Link to jQueryUI css --><link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"><!-- Linking to foundation.css --><link rel="stylesheet" href="/assets/css/foundation.min.css"><!-- Linking to our custom css --><link rel="stylesheet" href="/assets/css/app.css"><!-- Latest compiled and minified CSS --><style type="text/css">body{background-image: url("../assets/image/fruit-min.jpg");background-repeat: no-repeat;background-size: 100%;}</style><!-- Nav Bar --><nav class="top-bar" id="nav"><div class="top-bar-left"><h3 id="navButtons">Logo</h3></div><div class="top-bar-right"><ul class="dropdown menu" data-dropdown-menu><!-- Drop down menu --><li  id="navButtons"><a href="#">UserName</a><ul class="menu vertical align-center"><li class="hvr-underline-from-center dropDownList"><a href="#">Profile</a></li> <li class="hvr-underline-from-center dropDownList"><a href="#">Logout</a></li></ul></li><li class="hvr-underline-from-center" id="navButtons"><a href="/home">Home</a></li></ul></div></nav><h3 class="text-center">Search for Food</h3><section class="grid-x"><div class="medium-3 cell"></div><div class="medium-4 cell"><input type="search" name="food" id="foodSearch" onkeypress="return" placeholder="Search.." class="animated-search-form"></div></section><!-- This section needs to be dynamicly changing the height based on screen size --><section class="grid-container"><div class="grid-x grid-padding-x mainContent"><!-- Main Section --><div class="medium-11 large-11 cell" id="noteBox">'
+var htmlHeader = '<!-- This is for the user account page. This is unique to each user --><title>AIP Guide</title><!-- Link to jQueryUI css --><link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"><!-- Linking to foundation.css --><link rel="stylesheet" href="/assets/css/foundation.min.css"><!-- Linking to our custom css --><link rel="stylesheet" href="/assets/css/app.css"><!-- Latest compiled and minified CSS --><style type="text/css">body{background-image: url("../assets/image/fruit-min.jpg");background-repeat: no-repeat;background-size: 100%;}</style><!-- Nav Bar --><nav class="top-bar" id="nav"><div class="top-bar-left"><h3 id="navButtons">Data Driven AIP</h3></div><div class="top-bar-right"><ul class="dropdown menu" data-dropdown-menu><!-- Drop down menu --><li  id="navButtons"><a href="#">UserName</a><ul class="menu vertical align-center"><li class="hvr-underline-from-center dropDownList"><a href="#">Profile</a></li> <li class="hvr-underline-from-center dropDownList"><a href="#">Logout</a></li></ul></li><li class="hvr-underline-from-center" id="navButtons"><a href="/home">Home</a></li></ul></div></nav><h3 class="text-center">Search for Food</h3><section class="grid-x"><div class="medium-3 cell"></div><div class="medium-4 cell"><input type="search" name="food" id="foodSearch" onkeypress="return" placeholder="Search.." class="animated-search-form"></div></section><!-- This section needs to be dynamicly changing the height based on screen size --><section class="grid-container"><div class="grid-x grid-padding-x mainContent"><!-- Main Section --><div class="medium-11 large-11 cell" id="noteBox">'
 
 
 var footer = '</div></div></section><!-- Footer --><footer class="footer"><section class="wrapper"><p> &#169; Data Driven AIP Group 2017 </p></section></footer><!-- jQuery --><script src="https://code.jquery.com/jquery-1.12.4.js"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><!-- Linking to foundation js files --><script src="/assets/js/vendor/what-input.js"></script><script src="/assets/js/vendor/foundation.min.js"></script><!-- Linking to our custom js --><script src="/assets/js/app.js"></script>'
@@ -113,10 +113,6 @@ let nutrients = [
   // POST route for saving a new post
   router.get("/food", function(req, res) {
     res.send(htmlHeader + footer)
-
-
-    
-    
   });
 
   // POST route for saving a new post
@@ -138,7 +134,7 @@ let nutrients = [
             console.log(hint.food.label)
 
               if (count <= 5){
-                foodlist += '<section class="note divResize card-info primary" id="foodCards"><div class="card-info-content"</div><p>' + hint.food.label + '</p><div class="card-footer grid-container" id="foodFooter"><button class="hollow button success small notebutton" id="openFood"><p>Details</p></button><button class="hollow button alert small notebutton" id="deleteFood" ><p>Delete</p></button></div></section>'
+                foodlist += '<section class="note divResize card-info primary ' + count +'" id="foodCards" ><div class="card-info-content"</div><p>' + hint.food.label + '</p><div class="card-footer grid-container" id="foodFooter"><button class="hollow button success small notebutton" id="openFood"><p>Details</p></button><button class="hollow button alert small notebutton" id="deleteFood" name="'+ count +'"><p>Delete</p></button></div></section>'
 
                 count ++
               } else if (count <= 10){
@@ -208,7 +204,6 @@ let nutrients = [
         })
         .then(response => {
           foodParser(response.data)
-          // return foodParser(response.data);
         })
         .catch(error => {
           console.log(error);
@@ -216,7 +211,6 @@ let nutrients = [
     }
 
     function insertFood(values) {
-        console.log('======\nHEEEEERE\n==========')
         db.AIPNutrition.create({
             values
         })
@@ -226,10 +220,6 @@ let nutrients = [
     function getResult(result) {
         console.log(result)
     }
-    
-    // foodResults("")
-
-    
 
     function getFoodId(fullRequest){
       axios
@@ -239,20 +229,11 @@ let nutrients = [
     })
   }
   getFoodId(fullRequest)
-
-
-
-
-
   });
 
-  router.get("/home", function(req, res) {
+  router.get("/", function(req, res) {
     res.render("index");
   });
-
-  // router.get("/test", function(req, res) {
-  //   res.render("partials/home/food");
-  // });
 
   router.get("/what_is", function(req, res) {
     res.render("partials/home/whatis");

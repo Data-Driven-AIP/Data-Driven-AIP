@@ -35,10 +35,9 @@ $(document).ready(function() {
         location.href = "/food/" + newFoodSearch.name
       }
     );
-
-
       }
     });   
+
     //creating new notes
     $("#newNote").on("click", function(event){
     	event.preventDefault();
