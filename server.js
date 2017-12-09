@@ -28,7 +28,9 @@ app.use(function(err, req, res, next) {
 
 // Static directory
 app.use(express.static("public"));
-
+//For BodyParser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
@@ -37,41 +39,40 @@ app.set("view engine", "handlebars");
 app.use("/", routes);
 
 
-// //For Passport
-// app.use(session({
-// secret: 'keyboard cat',
-// resave: true,
-// saveUninitialized: true}));//session secret
-// app.use(passport.initialize());
-// app.use(passport.session()); //persistent login session
+//For Passport
+app.use(session({
+secret: 'keyboard cat',
+resave: true,
+saveUninitialized: true}));//session secret
+app.use(passport.initialize());
+app.use(passport.session()); //persistent login session
 
-// // For Handlebars
-// app.set('views', './app/views')
-// app.engine('hbs', exphbs({extname: '.hbs'}));
-// app.set('view engine', '.hbs');
+// For Handlebars
+app.set('views', './app/views')
+app.engine('hbs', exphbs({extname: '.hbs'}));
+app.set('view engine', '.hbs');
 
 
-// app.get('/', function(req, res){
+app.get('/', function(req, res){
+	res.redirect('/signin');
+});
 
-// 	res.send('Welcome to our page!');
-// });
+//Models
+var models = require("./app/models");
 
-// //Models
-// var models = require("./app/models");
+//Routes
+var authRoute = require('./app/routes/auth.js')(app, passport);
 
-// //Routes
-// var authRoute = require('./app/routes/auth.js')(app, passport);
+//load passport
+require('./app/config/passport/passport.js')(passport, models.user);
 
-// //load passport
-// require('./app/config/passport/passport.js')(passport, models.user);
+//Sync Database
+models.sequelize.sync().then(function(){
+	console.log('Nice! It is working')
 
-// //Sync Database
-// models.sequelize.sync().then(function(){
-// 	console.log('Nice! It is working')
-
-// }).catch(function(err){
-// 	console.log(err, "Not working")
-// });
+}).catch(function(err){
+	console.log(err, "Not working")
+});
 
 
 
