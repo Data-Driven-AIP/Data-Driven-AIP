@@ -12,7 +12,7 @@ let attrs = [
 const axios = require("axios");
 
 
-var htmlHeader = '<!-- This is for the user account page. This is unique to each user --><!-- Link to jQueryUI css --><link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"><!-- Linking to foundation.css --><link rel="stylesheet" href="/assets/css/foundation.min.css"><!-- Linking to our custom css --><link rel="stylesheet" href="/assets/css/app.css"><!-- Latest compiled and minified CSS --><style type="text/css">body{background-image: url("../assets/image/fruit-min.jpg");background-repeat: no-repeat;background-size: 100%;}</style><!-- Nav Bar --><nav class="top-bar" id="nav"><div class="top-bar-left"><h3 id="navButtons">Logo</h3></div><div class="top-bar-right"><ul class="dropdown menu" data-dropdown-menu><!-- Drop down menu --><li  id="navButtons"><a href="#">UserName</a><ul class="menu vertical align-center"><li class="hvr-underline-from-center dropDownList"><a href="#">Profile</a></li> <li class="hvr-underline-from-center dropDownList"><a href="#">Logout</a></li></ul></li><li class="hvr-underline-from-center" id="navButtons"><a href="/home">Home</a></li></ul></div></nav><section class="grid-x"><div class="medium-5 cell"></div><div class="medium-4 cell"><input type="search" name="search" placeholder="Search.." class="animated-search-form"></div></section><!-- This section needs to be dynamicly changing the height based on screen size --><section class="grid-container"><div class="grid-x grid-padding-x mainContent"><!-- Main Section --><div class="medium-11 large-11 cell" id="noteBox">'
+var htmlHeader = '<!-- This is for the user account page. This is unique to each user --><!-- Link to jQueryUI css --><link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"><!-- Linking to foundation.css --><link rel="stylesheet" href="/assets/css/foundation.min.css"><!-- Linking to our custom css --><link rel="stylesheet" href="/assets/css/app.css"><!-- Latest compiled and minified CSS --><style type="text/css">body{background-image: url("../assets/image/fruit-min.jpg");background-repeat: no-repeat;background-size: 100%;}</style><!-- Nav Bar --><nav class="top-bar" id="nav"><div class="top-bar-left"><h3 id="navButtons">Logo</h3></div><div class="top-bar-right"><ul class="dropdown menu" data-dropdown-menu><!-- Drop down menu --><li  id="navButtons"><a href="#">UserName</a><ul class="menu vertical align-center"><li class="hvr-underline-from-center dropDownList"><a href="#">Profile</a></li> <li class="hvr-underline-from-center dropDownList"><a href="#">Logout</a></li></ul></li><li class="hvr-underline-from-center" id="navButtons"><a href="/home">Home</a></li></ul></div></nav><h3 class="text-center">Search for Food</h3><section class="grid-x"><div class="medium-3 cell"></div><div class="medium-4 cell"><input type="search" name="food" id="foodSearch" onkeypress="return" placeholder="Search.." class="animated-search-form"></div></section><!-- This section needs to be dynamicly changing the height based on screen size --><section class="grid-container"><div class="grid-x grid-padding-x mainContent"><!-- Main Section --><div class="medium-11 large-11 cell" id="noteBox">'
 
 
 var footer = '</div></div></section><!-- Footer --><footer class="footer"><section class="wrapper"><p> &#169; Data Driven AIP Group 2017 </p></section></footer><!-- jQuery --><script src="https://code.jquery.com/jquery-1.12.4.js"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><!-- Linking to foundation js files --><script src="/assets/js/vendor/what-input.js"></script><script src="/assets/js/vendor/foundation.min.js"></script><!-- Linking to our custom js --><script src="/assets/js/app.js"></script>'
@@ -112,6 +112,20 @@ let nutrients = [
 
   // POST route for saving a new post
   router.get("/food", function(req, res) {
+    res.send(htmlHeader + footer)
+
+
+    
+    
+  });
+
+  // POST route for saving a new post
+  router.get("/food/:food", function(req, res) {
+    var appId = "&app_id=70222cca"
+    var appKey = "&app_key=611d05090fd131a9426b4014c000b338"
+    var query = 'https://api.edamam.com/api/food-database/parser?ingr=' + req.params.food
+    var fullRequest = query + appId + appKey
+
     //Adding from Edamam.js
     function getFood(url) {
       var foodlist = ""
@@ -149,17 +163,87 @@ let nutrients = [
                 count ++
               }
             
-
           })
           res.send(htmlHeader + foodlist + footer);  
       });
     }
-    getFood('https://api.edamam.com/api/food-database/parser?ingr=coconut%20yogurt&app_id=70222cca&app_key=611d05090fd131a9426b4014c000b338')
-  });
 
-  // POST route for saving a new post
-  router.get("/newfood", function(req, res) {
-    edamam.foodResults("http://www.edamam.com/ontologies/edamam.owl#Food_28309")
+    //copying from Edamam.js
+    function foodParser(response) {
+        //Meta data about the food item from the edamam database
+        let values = {
+            URI: response.uri,
+            FOOD: response.ingredients[0].parsed[0].food,
+            QUANTITY: response.ingredients[0].parsed[0].quantity,
+            MEASURE: response.ingredients[0].parsed[0].measure,
+            FOODID: response.ingredients[0].parsed[0].foodId,
+            FOODURI: response.ingredients[0].parsed[0].foodURI,
+            WEIGHT: response.ingredients[0].parsed[0].weight,
+            RETAINED_WEIGHT: response.ingredients[0].parsed[0].weight,
+            MEASURE_URI: response.ingredients[0].parsed[0].measureURI
+        }
+        //Adds nutrient info
+        for (var nutrient in response.totalNutrients) {
+            values[nutrient+"_QUANTITY"] = response.totalNutrients[nutrient].quantity
+            values[nutrient+"_UNIT"] = response.totalNutrients[nutrient].unit
+        }
+        //Adds health labels
+        response.healthLabels.forEach(label => {
+            values[label] = true;
+        })
+        return insertFood(values);
+    }
+
+    function foodResults(url) {
+      axios
+        .post('https://api.edamam.com/api/food-database/nutrients?app_id=70222cca&app_key=611d05090fd131a9426b4014c000b338', {
+          "yield": 1,
+          "ingredients": [
+            {
+              "quantity": 100, //keep constant
+              "measureURI": "http://www.edamam.com/ontologies/edamam.owl#Measure_gram", //keep constant
+              "foodURI": url //foodId URL
+            }
+          ]
+        })
+        .then(response => {
+          foodParser(response.data)
+          // return foodParser(response.data);
+        })
+        .catch(error => {
+          console.log(error);
+      });
+    }
+
+    function insertFood(values) {
+        console.log('======\nHEEEEERE\n==========')
+        db.AIPNutrition.create({
+            values
+        })
+        getFood(fullRequest)
+    }
+
+    function getResult(result) {
+        console.log(result)
+    }
+    
+    // foodResults("")
+
+    
+
+    function getFoodId(fullRequest){
+      axios
+      .get(fullRequest)
+    .then(response => {
+      foodResults(response.data.parsed[0].food.uri)
+    })
+  }
+  getFoodId(fullRequest)
+
+
+
+
+
   });
 
   router.get("/home", function(req, res) {
