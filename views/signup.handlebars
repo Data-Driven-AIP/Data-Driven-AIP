@@ -9,7 +9,7 @@
 body {
 		background-image: url("/assets/image/carrots-min.jpeg");
     background-repeat: no-repeat;
-    background-size: 100% 270%; 
+    background-size: 100% 270%;
 }
 
 
@@ -37,6 +37,12 @@ input[type=text], input[type=password], input[type=email] {
     padding: 16px;
 }
 
+
+.error_message {
+	color: #AA2020;
+	font-size: 120%;
+	border: 2px;
+}
 
 
 .btn {
@@ -74,6 +80,9 @@ input[type=text], input[type=password], input[type=email] {
 		<input class="btn" type="submit" value="Sign Up" />
 	</form>
 
+	<div class="error_message"> {{message}} </div>
+
 </body>
+
 
 </html>

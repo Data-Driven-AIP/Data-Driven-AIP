@@ -39,6 +39,11 @@ input[type=text], input[type=password] {
     padding: 16px;
 }
 
+.error_message {
+	color: #AA2020;
+	font-size: 120%;
+	border: 2px;
+}
 
 
 .btn {
@@ -72,6 +77,7 @@ input[type=text], input[type=password] {
 		<input class="btn" type="submit" value="Sign In" />
 	</form>
 
+	<div class="error_message"> {{message}} </div>
 
 </body>
 

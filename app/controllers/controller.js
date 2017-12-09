@@ -2,13 +2,14 @@ var exports = module.exports = {}
 
 exports.signup = function(req, res){
 
-	res.render('signup');
+	res.render('signup', { message: req.flash('info') });
 }
 
 exports.signin = function(req, res){
-
-	res.render('signin');
+	//res.render('signin');
+	res.render('signin', { message: req.flash('info') });
 }
+
 
 exports.dashboard = function(req, res) {
 
