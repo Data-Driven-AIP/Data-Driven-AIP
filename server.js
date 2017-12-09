@@ -48,14 +48,16 @@ app.use(passport.initialize());
 app.use(passport.session()); //persistent login session
 
 // For Handlebars
-app.set('views', './app/views')
-app.engine('hbs', exphbs({extname: '.hbs'}));
-app.set('view engine', '.hbs');
+
+// app.set('views', './app/views')
+// app.engine('hbs', exphbs({extname: '.hbs'}));
+// app.set('view engine', '.hbs');
 
 
-app.get('/', function(req, res){
-	res.redirect('/home');
-});
+// app.get('/', function(req, res){
+// 	res.redirect('/home');
+// });
+
 
 //Models
 var models = require("./app/models");

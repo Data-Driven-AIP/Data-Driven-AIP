@@ -35,10 +35,19 @@ $(document).ready(function() {
         location.href = "/food/" + newFoodSearch.name
       }
     );
-
-
       }
     });   
+
+     $("#foodDetail").on("click", function(event){
+        event.preventDefault();
+        location.reload();
+    })
+
+     $("#close-button").on("click", function(event){
+        event.preventDefault();
+        alert("closing");
+        location.reload();
+    })
     //creating new notes
     $("#newNote").on("click", function(event){
     	event.preventDefault();
