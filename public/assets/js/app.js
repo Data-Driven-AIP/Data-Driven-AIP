@@ -15,6 +15,30 @@ $(document).ready(function() {
 	    })
 	});
 
+    $("#foodSearch").keypress(function (e) {
+     var key = e.which;
+     if(key == 13)  // the enter key code
+      {
+       event.preventDefault();
+
+       var newFoodSearch = {
+        name: $('#foodSearch').val().trim()
+       }
+
+       // Send the POST request.
+    $.ajax("/food/" + newFoodSearch.name , {
+      type: "GET",
+      data: newFoodSearch
+    }).then(
+      function() {
+        console.log("Searched food");
+        location.href = "/food/" + newFoodSearch.name
+      }
+    );
+
+
+      }
+    });   
     //creating new notes
     $("#newNote").on("click", function(event){
     	event.preventDefault();
