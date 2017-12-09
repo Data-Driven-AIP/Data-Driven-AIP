@@ -24,7 +24,6 @@ $(document).ready(function() {
        var newFoodSearch = {
         name: $('#foodSearch').val().trim()
        }
-
        // Send the POST request.
     $.ajax("/food/" + newFoodSearch.name , {
       type: "GET",
@@ -38,16 +37,23 @@ $(document).ready(function() {
       }
     });   
 
-     $("#foodDetail").on("click", function(event){
-        event.preventDefault();
-        location.reload();
-    })
 
-     $("#close-button").on("click", function(event){
+    // $.ajax({
+    //     url: '/newfood/',
+    //     complete: function(data){
+    //         console.log(data);
+    //     }
+    // })
+
+     $("#openFood").on("click", function(event){
         event.preventDefault();
-        alert("closing");
-        location.reload();
-    })
+        var foodDetailObj = {
+            uri: this.value
+        }
+        
+    location.href = "/newfood/"+encodeURIComponent(foodDetailObj.uri)
+      })
+
     //creating new notes
     $("#newNote").on("click", function(event){
     	event.preventDefault();

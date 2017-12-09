@@ -80,7 +80,7 @@ Nav
 
 .dropDownList {
   background-color: #8FBC8F;
-  max-width: 100px;
+
 }
 
 
@@ -250,6 +250,7 @@ Food List
   height: 160px;
   overflow-y: scroll;
   border-width: 1.5px;
+  margin-left: 2.5px;
 }
 
 #openFood p {
