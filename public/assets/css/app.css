@@ -246,6 +246,32 @@ Main Section
   margin: 0 7.5px 5px 0;
 }
 
+/* *******************************************************************
+Food List
+
+******************************************************************** */
+#foodCards{
+  width:200px;
+  height: 160px;
+  overflow-y: scroll;
+  border-width: 1.5px;
+}
+
+#openFood p {
+  margin-bottom: 0px;
+
+}
+
+#foodFooter {
+  padding: 0px;
+}
+#deleteFood {
+  margin-right: 0px;
+}
+
+#deleteFood p {
+  margin-bottom: 0px;
+}
 
 /* *******************************************************************
 Contact Us
