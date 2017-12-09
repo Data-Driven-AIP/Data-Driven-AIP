@@ -3,9 +3,10 @@ module.exports = {
     foodParser,
     foodResults,
     insertFood,
-    getResult
+    getResult,
+    html
 }
-
+var html = ""
 const axios = require("axios");
 var mysql = require('mysql');
 var db = require("../models");
@@ -78,7 +79,10 @@ let nutrients = [
           response.data.hints.forEach(hint => {
             console.log(hint.food.uri)
             console.log(hint.food.label)
+            html += "<p>"+ hint.food.label + "</p><br>"
+            
           })
+          return html;  
       });
     }
 

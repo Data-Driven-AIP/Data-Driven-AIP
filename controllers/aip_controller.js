@@ -8,6 +8,15 @@ let attrs = [
         "MEASURE"
 ]
 
+//Adding from edamam.js
+const axios = require("axios");
+
+
+var htmlHeader = '<!-- This is for the user account page. This is unique to each user --><!-- Link to jQueryUI css --><link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"><!-- Linking to foundation.css --><link rel="stylesheet" href="/assets/css/foundation.min.css"><!-- Linking to our custom css --><link rel="stylesheet" href="/assets/css/app.css"><!-- Latest compiled and minified CSS --><style type="text/css">body{background-image: url("../assets/image/fruit-min.jpg");background-repeat: no-repeat;background-size: 100%;}</style><!-- Nav Bar --><nav class="top-bar" id="nav"><div class="top-bar-left"><h3 id="navButtons">Logo</h3></div><div class="top-bar-right"><ul class="dropdown menu" data-dropdown-menu><!-- Drop down menu --><li  id="navButtons"><a href="#">UserName</a><ul class="menu vertical align-center"><li class="hvr-underline-from-center dropDownList"><a href="#">Profile</a></li> <li class="hvr-underline-from-center dropDownList"><a href="#">Logout</a></li></ul></li><li class="hvr-underline-from-center" id="navButtons"><a href="/home">Home</a></li></ul></div></nav><section class="grid-x"><div class="medium-5 cell"></div><div class="medium-4 cell"><input type="search" name="search" placeholder="Search.." class="animated-search-form"></div></section><!-- This section needs to be dynamicly changing the height based on screen size --><section class="grid-container"><div class="grid-x grid-padding-x mainContent"><!-- Main Section --><div class="medium-11 large-11 cell" id="noteBox">'
+
+
+var footer = '</div></div></section><!-- Footer --><footer class="footer"><section class="wrapper"><p> &#169; Data Driven AIP Group 2017 </p></section></footer><!-- jQuery --><script src="https://code.jquery.com/jquery-1.12.4.js"></script><script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><!-- Linking to foundation js files --><script src="/assets/js/vendor/what-input.js"></script><script src="/assets/js/vendor/foundation.min.js"></script><!-- Linking to our custom js --><script src="/assets/js/app.js"></script>'
+
 let nutrients = [
         "ENERC_KCAL_QUANTITY",
         "ENERC_KCAL_UNIT",
@@ -103,9 +112,49 @@ let nutrients = [
 
   // POST route for saving a new post
   router.get("/food", function(req, res) {
-    
-    edamam.getFood('https://api.edamam.com/api/food-database/parser?ingr=coconut%20yogurt&app_id=70222cca&app_key=611d05090fd131a9426b4014c000b338')
-    res.render("partials/home/food");
+    //Adding from Edamam.js
+    function getFood(url) {
+      var foodlist = ""
+      var count = 1;
+      axios
+        .get(url)
+        .then(function(response) {
+          response.data.hints.forEach(hint => {
+            console.log(hint.food.uri)
+            console.log(hint.food.label)
+
+              if (count <= 5){
+                foodlist += '<section class="note divResize card-info primary" id="foodCards"><div class="card-info-content"</div><p>' + hint.food.label + '</p><div class="card-footer grid-container" id="foodFooter"><button class="hollow button success small notebutton" id="openFood"><p>Details</p></button><button class="hollow button alert small notebutton" id="deleteFood" ><p>Delete</p></button></div></section>'
+
+                count ++
+              } else if (count <= 10){
+
+                foodlist += '<section class="note divResize card-info secondary" id="foodCards"><div class="card-info-content"</div><p>' + hint.food.label + '</p><div class="card-footer grid-container" id="foodFooter"><button class="hollow button success small notebutton" id="openFood"><p>Details</p></button><button class="hollow button alert small notebutton" id="deleteFood" ><p>Delete</p></button></div></section>'
+                
+                count ++
+              } else if (count <= 15){
+
+                foodlist += '<section class="note divResize card-info success" id="foodCards"><div class="card-info-content"</div><p>' + hint.food.label + '</p><div class="card-footer grid-container" id="foodFooter"><button class="hollow button success small notebutton" id="openFood"><p>Details</p></button><button class="hollow button alert small notebutton" id="deleteFood" ><p>Delete</p></button></div></section>'
+                
+                count ++
+              } else if (count <= 20){
+
+                foodlist += '<section class="note divResize card-info alert" id="foodCards"><div class="card-info-content"</div><p>' + hint.food.label + '</p><div class="card-footer grid-container" id="foodFooter"><button class="hollow button success small notebutton" id="openFood"><p>Details</p></button><button class="hollow button alert small notebutton" id="deleteFood" ><p>Delete</p></button></div></section>'
+                
+                count ++
+              } else if (count <= 25){
+
+                foodlist += '<section class="note divResize card-info warning" id="foodCards"><div class="card-info-content"</div><p>' + hint.food.label + '</p><div class="card-footer grid-container" id="foodFooter"><button class="hollow button success small notebutton" id="openFood"><p>Details</p></button><button class="hollow button alert small notebutton" id="deleteFood" ><p>Delete</p></button></div></section>'
+                
+                count ++
+              }
+            
+
+          })
+          res.send(htmlHeader + foodlist + footer);  
+      });
+    }
+    getFood('https://api.edamam.com/api/food-database/parser?ingr=coconut%20yogurt&app_id=70222cca&app_key=611d05090fd131a9426b4014c000b338')
   });
 
   // POST route for saving a new post
