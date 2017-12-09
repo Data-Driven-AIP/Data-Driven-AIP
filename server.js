@@ -28,7 +28,9 @@ app.use(function(err, req, res, next) {
 
 // Static directory
 app.use(express.static("public"));
-
+//For BodyParser
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
@@ -46,6 +48,7 @@ app.use(passport.initialize());
 app.use(passport.session()); //persistent login session
 
 // For Handlebars
+
 // app.set('views', './app/views')
 // app.engine('hbs', exphbs({extname: '.hbs'}));
 // app.set('view engine', '.hbs');
@@ -54,6 +57,7 @@ app.use(passport.session()); //persistent login session
 // app.get('/', function(req, res){
 // 	res.redirect('/home');
 // });
+
 
 //Models
 var models = require("./app/models");

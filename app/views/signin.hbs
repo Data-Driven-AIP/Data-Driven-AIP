@@ -5,17 +5,78 @@
 <head>
 
 	<title> Sign-in </title>
+	<style>
+
+body {
+    background-image: url("https://png.pngtree.com/thumb_back/fw800/back_pic/00/02/38/6056175f2e19f8c.jpg");
+    
+    background-repeat: no-repeat;
+     background-size: 100% 500%;
+
+    
+    
+    
+
+}
+
+
+form {
+    
+ 
+    position: center;
+
+
+}
+
+input[type=text], input[type=password] {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    position: center;
+    font-size: 50%;
+
+    
+}
+.container {
+    padding: 16px;
+}
+
+
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 24%;
+    margin-left: 160px;
+    font-size:80%;
+}
+
+
+
+</style>
 
 </head>
 
 <body>
-	<form id="signin" name="signin" method="post" action="authenticate_email">
 
+	
+
+	<form id="signin" name="signin" method="post" action="authenticate_email">
+		<div class="container">
 		<label for="email"> E-mail Address: </label>
 		<input class="text" name="email" type="text" />
-
+		<br>
 		<label for="password"> Password: &nbsp &nbsp &nbsp &nbsp &nbsp</label>
 		<input class="password" type="password" name="password" />
+		<br>
+		</div>
 
 		<input class="btn" type="submit" value="Sign In" />
 	</form>
