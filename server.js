@@ -45,15 +45,14 @@ saveUninitialized: true}));//session secret
 app.use(passport.initialize());
 app.use(passport.session()); //persistent login session
 
-// // For Handlebars
+// For Handlebars
 // app.set('views', './app/views')
 // app.engine('hbs', exphbs({extname: '.hbs'}));
 // app.set('view engine', '.hbs');
 
 
 // app.get('/', function(req, res){
-
-// 	res.send('Welcome to our page!');
+// 	res.redirect('/home');
 // });
 
 //Models
