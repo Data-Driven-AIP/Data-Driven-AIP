@@ -1,5 +1,6 @@
 var PORT = process.env.PORT || 3000;
 var express 	= require('express');
+var flash = require('connect-flash');
 var path 			= require('path');
 var bodyParser= require('body-parser');
 var sequelize = require("sequelize")
@@ -35,10 +36,14 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("public"));
 
 //For Passport
-app.use(session({
-secret: 'keyboard cat',
-resave: true,
-saveUninitialized: true}));//session secret
+app.use(session(
+    {
+      secret: 'keyboard cat',
+      resave: true,
+      saveUninitialized: true
+    })
+);//session secret
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session()); //persistent login session
 

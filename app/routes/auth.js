@@ -9,8 +9,8 @@ module.exports = function(app, passport) {
 
 	app.post('/signup', passport.authenticate('local-signup', {
 		successRedirect: '/user_account',
-
-		failureRedirect: '/signup'
+		failureRedirect: '/signup',
+		failureFlash: true
 		}
 
 	));
@@ -21,8 +21,8 @@ module.exports = function(app, passport) {
 
 	app.post('/authenticate_email', passport.authenticate('local-signin', {
 		successRedirect: '/user_account',
-
-		failureRedirect: '/signin'
+		failureRedirect: '/signin',
+		failureFlash: true
 
 		}
 	));

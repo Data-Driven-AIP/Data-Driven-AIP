@@ -60,6 +60,7 @@ module.exports = function(passport, user){
 					if (user)
 					{
 						console.log(user)
+						req.flash('info', 'The email is already taken');
 						return done(null, false, {
 							message: 'That email is already taken'
 						});
@@ -128,6 +129,8 @@ module.exports = function(passport, user){
 
 					if(!user){
 						console.log("Email does not exist");
+						req.flash('info', 'Email does not exist');
+
 						return done(null, false, {
 							message: 'Email does not exist'
 						});
@@ -135,14 +138,20 @@ module.exports = function(passport, user){
 
 					if (!isValidPassword(user.password, password)){
 						console.log("Incorrect Password");
+						req.flash('info', 'Incorrect Password');
+
 						return done(null, false, {
-							message: 'Incorret password.'
+							message: 'Incorrect password.'
 						});
 					}
 
 					var userinfo = user.get();
 
 					console.log(userinfo);
+					req.flash('login_name', userinfo['firstname'])
+
+					console.log(req.flash('login_name'));
+
 					return done(null, userinfo);
 
 				}).catch(function(err){
