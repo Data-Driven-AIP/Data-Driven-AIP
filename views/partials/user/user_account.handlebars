@@ -18,18 +18,22 @@
 
 <!-- Nav Bar -->
 <nav class="top-bar" id="nav">
-    <div class="top-bar-left">
-      <h3 id="navButtons">Data Driven AIP</h3>
-    </div>
+
+  <div class="top-bar-left">
+          <a class="navbar-brand" href="./"><img src="/assets/image/logo.png" width="80" alt="logo">
+          </a>
+  </div>
+
     <div class="top-bar-right">
       <ul class="dropdown menu" data-dropdown-menu>
       <!-- Drop down menu -->
-      <li  id="navButtons"><a href="#">UserName</a>
+      <li  id="navButtons"><a href="#">My Account</a>
 	      		<ul class="menu vertical align-center">
-		          <li class="hvr-underline-from-center dropDownList"><a href="#">Profile</a></li>
-		          <li class="hvr-underline-from-center dropDownList"><a href="#">Logout</a></li>
+		          <li class="hvr-underline-from-center dropDownList"><a href="/user_account">Profile</a></li>
+		          <li class="hvr-underline-from-center dropDownList"><a href="/logout">Logout</a></li>
 		        </ul>
 	      </li>
+	    <li class="hvr-underline-from-center" id="navButtons"><a href="/food">Food</a></li>  
         <li class="hvr-underline-from-center" id="navButtons"><a href="/">Home</a></li>
       </ul>
     </div>
@@ -106,9 +110,9 @@
 				      		</div>
 				    	</div>
 				    	<button class="hollow button"  id="newNote" href="#" data-close >Submit</button>
-				  	</div>	
+				  	</div>
 				</form>
-			 
+
 			</div>
 
 			<div id="recentNotes">
@@ -191,5 +195,3 @@
 <!-- Linking to our custom js -->
 
 <script src="/assets/js/app.js"></script>
-
-
