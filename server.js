@@ -23,6 +23,14 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// Sets up the Express app to handle data parsing
+//For BodyParser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+
 // Static directory
 app.use(express.static("public"));
 
@@ -57,12 +65,6 @@ app.use("/", routes);
 //load passport
 require('./app/config/passport/passport.js')(passport, models.user);
 
-// Sets up the Express app to handle data parsing
-//For BodyParser
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.text());
-app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
 //Sync Database
 models.sequelize.sync().then(function(){

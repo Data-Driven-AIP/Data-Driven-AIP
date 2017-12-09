@@ -127,14 +127,14 @@ module.exports = function(passport, user){
 				}).then(function(user){
 
 					if(!user){
-
+						console.log("Email does not exist");
 						return done(null, false, {
 							message: 'Email does not exist'
 						});
 					}
 
 					if (!isValidPassword(user.password, password)){
-
+						console.log("Incorrect Password");
 						return done(null, false, {
 							message: 'Incorret password.'
 						});
@@ -142,11 +142,12 @@ module.exports = function(passport, user){
 
 					var userinfo = user.get();
 
+					console.log(userinfo);
 					return done(null, userinfo);
 
 				}).catch(function(err){
 
-					console.log("Error", err);
+					console.log("Error on signin", err);
 
 					return done(null, false, {
 						message: "Something went wrong with your Signin"
