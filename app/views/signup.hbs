@@ -4,19 +4,77 @@
 <head>
 	<title> Sign-up </title>
 
+		<style>
+
+body {
+	  background-image: url("https://png.pngtree.com/thumb_back/fw800/back_pic/03/54/18/185799af25ac6e8.jpg");
+    
+    background-repeat: no-repeat;
+     background-size: 100% 270%; 
+	
+   
+
+}
+
+
+form {
+    
+ 
+    position: center;
+
+
+}
+
+input[type=text], input[type=password], input[type=email] {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    position: center;
+    font-size: 50%;
+
+    
+}
+.container {
+    padding: 16px;
+}
+
+
+
+.btn {
+    background-color: #FFA500;
+    color: white;
+    padding: 14px 20px;
+    margin: 30px 0;
+    border: none;
+    cursor: pointer;
+    width: 24%;
+    margin-left: 140px;
+    font-size:80%;
+}
+</style>
+
 </head>
 
 <body>
 
 	<form id="signup" name="signup" method="post" action="/signup">
-		<label for="email"> Email Address</label>
+		<div class="container">
+		<label for="email"> Email Address:</label>
 		<input class="text" name="email" type="email" />
-		<label for="firstname"> First Name</label>
+		<br>
+		<label for="firstname"> First Name:&nbsp &nbsp &nbsp</label>
 		<input name="firstname" type="text" />
-		<label for="lastname"> Last Name </label>
+		<br>
+		<label for="lastname"> Last Name:&nbsp &nbsp &nbsp </label>
 		<input name="lastname" type="text" />
-		<label for="password"> Password </label>
+		<br>
+		<label for="password"> Password: &nbsp &nbsp &nbsp &nbsp </label>
 		<input name="password" type="password" />
+		</div>
+		<br>
 		<input class="btn" type="submit" value="Sign Up" />
 	</form>
 	

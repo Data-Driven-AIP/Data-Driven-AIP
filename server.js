@@ -54,7 +54,7 @@ app.set('view engine', '.hbs');
 
 
 app.get('/', function(req, res){
-	res.redirect('/signin');
+	res.redirect('/home');
 });
 
 //Models
